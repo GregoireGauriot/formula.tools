@@ -1,0 +1,17 @@
+2009-11-12 Version 0.13.0 (cbrown)
+  + Added documentation
+  + Added sysdat.rda contain objects op.types and relational.inverses
+  - inst/extdata: removed
+  - test/Examples: removed 
+  + R/inverse.operators.r and R/op.types.r moved to scripts
+  + R/invert.op.R renamed to invert
+  + man/invert.op-methods.Rd renamed to invert-methods.Rd
+  
+
+2009-11-03 (cbrown)
+  + Added inverse.op method
+
+2009-11-01 Version 0.11.0 (cbrown)
+First Complete Version
+
+
