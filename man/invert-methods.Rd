@@ -16,8 +16,8 @@
 \section{Methods}{
   \describe{
 
-    \item{x = "call"}{ ~~describe this method here }
-    \item{x = "expression"}{ ~~describe this method here }
+    \item{x = "call"}{ A \code{\link{call}} object. }
+    \item{x = "expression"}{ An \code{\link{expression}} object. }
 
   }
 }

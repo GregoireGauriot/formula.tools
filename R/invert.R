@@ -15,9 +15,9 @@
 .invert.single <- 
   function(x) { 
 
-    if ( op(x) %in% keys(relational.inverses) ) 
+    if ( as.character(op(x)) %in% keys(relational.inverses) ) 
     { 
-      op(x) <- as.name( relational.inverses[[ op(x) ]] )
+      op(x) <- as.name( relational.inverses[[ as.character(op(x)) ]] )
     } else  {
       warning( "No inverse found for op:", op(x) )    
     }

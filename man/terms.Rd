@@ -14,6 +14,7 @@
 
 \usage{
   \method{terms}{call}(x, ...)
+  \method{terms}{expression}(x, ...)
 }
 
 \arguments{

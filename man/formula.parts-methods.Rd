@@ -47,6 +47,7 @@
 \alias{op,expression-method}
 \alias{op,formula-method}
 \alias{op,list-method}
+\alias{op,name-method}
 \alias{op}
 
 \alias{op<--methods}
@@ -166,7 +167,14 @@
   rhs(f)
   rhs(f) <- quote( G + H ) 
   op(f)
+  op(rhs(f))
+  op( quote(A) )  # NULL: 
   op.type(f)
+
+  # ONE-SIDED FORMULA
+  f <- ~ A   # 
+  lhs(f)     # NULL
+  rhs(f)     # A
 
 
   # EXPRESSION

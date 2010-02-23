@@ -6,10 +6,11 @@
 
 setGeneric( 'op', function(x, ...) standardGeneric( 'op' ) )
 
-setMethod(  'op', 'call' , function (x) as.character(x[[1]]) )
-setMethod(  'op', 'expression', function(x,...) lapply( x, op, ... ) )
-setMethod(  'op', 'formula', function(x) as.character( x[[1]] ) )
-setMethod(  'op', 'list', function(x, ...) lapply( x, op, ... ) )
+setMethod( 'op', 'call' , function (x) x[[1]] ) 
+setMethod( 'op', 'formula', function(x) x[[1]] )
+setMethod( 'op', 'name', function(x, ...) NULL )
+setMethod( 'op', 'expression', function(x,...) lapply( x, op, ... ) )
+setMethod( 'op', 'list', function(x, ...) lapply( x, op, ... ) )
                                                                      
 
 # -----------------------------------------------------------------------------
@@ -20,21 +21,21 @@ setGeneric( 'op<-', function(this,value) standardGeneric('op<-') )
 # -------------------------------------
 # SINGLE: call, formula
 # -------------------------------------   
-.replace.op.single <- function( this, value ) {
+.replace.op.singular <- function( this, value ) {
     this[[1]] <- value
     this
 }
 
 
 
-setReplaceMethod( 'op', 'call',    .replace.op.single )
-setReplaceMethod( 'op', 'formula', .replace.op.single )
+setReplaceMethod( 'op', 'call',    .replace.op.singular )
+setReplaceMethod( 'op', 'formula', .replace.op.singular )
 
 
 # -------------------------------------
 # LIST AND VECTORS: expression, list
 # -------------------------------------
-.replace.op.many <- function( this, value ) {
+.replace.op.plural <- function( this, value ) {
 
     if( length(value) == 1 ) {
       for( i in length(this) ) op( this[[i]] ) <- value 
@@ -49,7 +50,7 @@ setReplaceMethod( 'op', 'formula', .replace.op.single )
 }
 
 
-setReplaceMethod( 'op', 'expression' , .replace.op.many )
-setReplaceMethod( 'op', 'list' , .replace.op.many ) 
+setReplaceMethod( 'op', 'expression' , .replace.op.plural )
+setReplaceMethod( 'op', 'list' , .replace.op.plural ) 
 
 

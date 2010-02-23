@@ -18,7 +18,17 @@ setMethod(  'lhs', 'call',
 )
 
 
-setMethod(  'lhs', 'formula', function(x,...) x[[2]] )
+setMethod(  'lhs', 'formula', 
+  function(x,...) {
+    
+  # rh only, e.g. ~ a 
+    if ( length(x) == 2 ) return( NULL )
+
+    if ( length(x) == 3 ) return( x[[2]] ) 
+
+  }
+)
+
 
 setMethod(  'lhs', 'expression', function(x,...) lapply( x, lhs, ... ) )
 setMethod(  'lhs', 'list', function(x,...) lapply( x, lhs, ... ) )

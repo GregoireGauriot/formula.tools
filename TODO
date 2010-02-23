@@ -1,2 +1,6 @@
 
-- Change name to symbolic.tools
+- Change name to symbolic.tools (probably not)
+- R/op.R
+  + should return the op and not as.character(op)
+
+- 

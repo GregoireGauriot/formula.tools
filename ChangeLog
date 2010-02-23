@@ -1,3 +1,95 @@
+2010-05-02  
+  - R/op.type.R, R/invert.R :
+    + Changes sense that op returns that operator as a name and not a 
+      character. This breaks backward comparability.  Also since 
+      hash-2.0.0 does less coercion on look-ups, we have to explicitly 
+      add as.character when working with the hash objects.
+
+
+2010-02-23 Version 0.20  (Many thanks to Hadley Wickham for comments for this release )
+  - R/zzz.R
+    + Only displays the ODG logo.
+  - R/lhs.R
+    + correctly NULL for one-sided formula ~ a
+  - R/rhs.R
+    + correctly return rhs for one-sided formula. (
+  - R/is.one.sided.R: added
+    + is.one.sided: method added
+    + is.two.sided: method added
+  - man/is.one.sided.R: added
+  - R/op.R
+    + op,name-method: returns NULL3
+    + op-method: now returns the operator and is not coerced to character
+    
+
+  Hadley Wickham wrote:
+    Hi Christopher,
+    
+    formula.tools looks a like a really useful package, however there are
+    a couple of things that are a little frustrating at the moment:
+    
+    Firstly, the start up message is a bit much, especially when the hash
+    package is loaded too:
+    
+    > library(formula.tools)
+    Loading required package: hash
+    
+    The  hash  package provided by:
+                               _       _
+     ___  _ __   ___ _ __   __| | __ _| |_ __ _
+     / _ \| '_ \ / _ \ '_ \ / _` |/ _' | __/ _' |
+    | (_) | |_) |  __/ | | | (_| | (_| | || (_| |
+     \___/| .__/ \___|_| |_|\__,_|\__,_|\__\__,_|
+         |_|       http://www.opendatagroup.com
+    
+    
+    The  formula.tools  package provided by:
+                               _       _
+     ___  _ __   ___ _ __   __| | __ _| |_ __ _
+     / _ \| '_ \ / _ \ '_ \ / _` |/ _' | __/ _' |
+    | (_) | |_) |  __/ | | | (_| | (_| | || (_| |
+     \___/| .__/ \___|_| |_|\__,_|\__,_|\__\__,_|
+         |_|       http://www.opendatagroup.com
+    
+    >
+    
+    
+    Secondly, your methods don't seem to return correct results for
+    one-sided formulas:
+    
+    > f <- ~ a
+    > lhs(f)
+    a
+    > rhs(f)
+    Error in x[[3]] : subscript out of bounds
+    > op(f)
+    [1] "~"
+    
+    Finally, it would be nice to have a "has_op" or "is_op" method or
+    something similar:
+    
+    f <- a ~ b + c
+    has_op(lhs(f)) # FALSE
+    has_op(rhs(f)) # TRUE
+    
+    or alternatively make op return something useful when it's not
+    actually an operator:
+    
+    > op(rhs(f))
+    [1] "+"
+    > op(lhs(f))
+    Error in function (classes, fdef, mtable)          
+     unable to find an inherited method for function "op", for signature "name"
+    
+    
+    Regards,
+    
+    Hadley
+
+
+2009-11-28 Version 0.14.1 (cbrown)
+  + Documentation fixes for release on CRAN
+  
 2009-11-12 Version 0.13.0 (cbrown)
   + Added documentation
   + Added sysdat.rda contain objects op.types and relational.inverses

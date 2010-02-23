@@ -15,12 +15,15 @@ setMethod( 'rhs', 'call',
     ) {
       x[[3]]
     } else {
-      warning( "There is no relational operator defined for ", deparse(x)  )
+      # warning( "There is no relational operator defined for ", deparse(x)  )
+      x[[2]]
     }
   }
 )
 
-setMethod( 'rhs', 'formula', function(x) x[[3]] )
+# The rhs is always the last element.
+setMethod( 'rhs', 'formula', function(x) x[[ length(x) ]] )
+    
 setMethod( 'rhs', 'expression', function(x,...) lapply( x, rhs, ... ) )       
 setMethod( 'rhs', 'list', function(x,...) lapply( x, rhs, ... ) )
  
@@ -35,6 +38,7 @@ setGeneric( 'rhs<-', function(this,value) standardGeneric('rhs<-') )
 # SINGLE: call, formula
 # -------------------------------------
 .replace.rhs.single <-  function(this,value) {
+
     this[[3]] <- value 
     this 
 }                                                    

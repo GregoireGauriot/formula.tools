@@ -9,13 +9,13 @@
 # OP.TYPE
 setGeneric( 'op.type', function(x, ...) standardGeneric( 'op.type' ) )
 
-setMethod(  'op.type', 'call' , function (x) op.types[[ op(x) ]] )
-setMethod(  'op.type', 'formula' , function (x) op.types[[ op(x) ]] )
+setMethod(  'op.type', 'call' , function (x) op.types[[ as.character(op(x)) ]] )
+setMethod(  'op.type', 'formula' , function (x) op.types[[ as.character(op(x)) ]] )
 setMethod(  'op.type', 'expression', 
-  function(x,...) lapply( x,function(x) op.types[[ op(x) ]],  ... ) 
+  function(x,...) lapply( x,function(x) op.types[[ as.character(op(x)) ]],  ... ) 
 )
 setMethod( 'op.type', 'list',
-  function(x,...) lapply( x,function(x) op.types[[ op(x) ]],  ... ) 
+  function(x,...) lapply( x,function(x) op.types[[ as.character(op(x)) ]],  ... ) 
 )
                            
 

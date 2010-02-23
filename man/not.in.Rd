@@ -1,7 +1,7 @@
-\name{\%!in\%}
+\name{Not In}
 \Rdversion{1.1}
 \alias{\%!in\%}
-\alias{!in}
+\alias{\!in}
 \alias{not in}
 
 \title{ Logical inverse on \%in\% }
