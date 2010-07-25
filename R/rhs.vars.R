@@ -7,12 +7,12 @@ setGeneric( 'rhs.vars', function(x, ... ) standardGeneric( 'rhs.vars' ) )
 .rhs.vars <- 
   function(x, ..., data=NULL) 
   {
-    if( class( x[[1]] )   == 'name' &&
-        deparse( x[[1]] ) %in% c( relational.operators, tilde ) 
-  
+    if( 
+        class( x[[1]] )   == 'name' &&
+        deparse( x[[1]] ) %in% operators()  
     ) {
   
-      term.rhs <- terms( x, data=data, ... )
+      term.rhs <- terms( x, data=data, ... ) 
       labels   <- attr( term.rhs, 'term.labels' )
       order    <- attr( term.rhs, 'order' )
       vars.rhs <- labels[ order == 1 ]

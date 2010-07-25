@@ -3,7 +3,8 @@
 #   Make assesments about classes for objects.
 #
 #  TODO: 
-#    alias & for intersect of numerical types. 
+#   - alias & for intersect of numerical types. 
+#   - vector.tools
 # -----------------------------------------------------------------------------
   
 ## IS ##

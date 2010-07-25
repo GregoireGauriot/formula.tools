@@ -2,22 +2,24 @@
 # invert
 #   inverts the operators in a formula
 # 
+#   
 # ------------------------------------------------------------------------------
 
 # Before declaring a new generic function we check to see if it exists.
 #  package::hash already defines an invert generic, so this is not 
 #  necessary.
-# if( ! isGeneric( 'invert' ) ) {
-#  setGeneric( 'invert', function(x, ...) standardGeneric( 'invert' ) )
-# }  
+if( ! isGeneric( 'invert' ) ) {
+  setGeneric( 'invert', function(x, ...) standardGeneric( 'invert' ) )
+}  
 
 
 .invert.single <- 
   function(x) { 
 
-    if ( as.character(op(x)) %in% keys(relational.inverses) ) 
-    { 
-      op(x) <- as.name( relational.inverses[[ as.character(op(x)) ]] )
+    o <- as.character(op(x)) 
+    
+    if ( o %in% operators( type="relational" ) ) {
+      op(x) <- as.name( .Options$operators[[o]][['inverse']] )
     } else  {
       warning( "No inverse found for op:", op(x) )    
     }
@@ -29,7 +31,7 @@
 setMethod( 'invert', 'call', .invert.single ) 
 
 
-.invert.many <- 
+.invert.plural <- 
   function(x) {
 
     for( i in 1:length(x) )
@@ -39,7 +41,7 @@ setMethod( 'invert', 'call', .invert.single )
 
   }   
 
-setMethod( 'invert', 'expression', .invert.many )
+setMethod( 'invert', 'expression', .invert.plural )
 
 
 

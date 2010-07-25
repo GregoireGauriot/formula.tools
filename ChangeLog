@@ -1,3 +1,52 @@
+2010-07-25
+ - inst/: removed as it was empty
+
+2010-07-16
+ - Added dependency to operator.tools package
+ - R/rhs.vars: uses operators() and tests for any operator
+ - no longer dependent on the hash package :(
+
+
+2010-06-15
+  Refactor into operators, expressions and formulas
+
+  The operator functionality of 'formula.tools' has been moved to 
+  operators-0.1-7 and later.  The API has also changed. Previously,
+  you would ask for relational.operators, not it is a function . . .
+  operators( type="relational" )
+  
+  - R/operators.R: deleted - is in the operators package.
+  - R/operators.Rd: deleted - is in the operators package.
+  - R/terms.R: change to use operators() from operators package.
+  - R/not.in.R: deleted - exists in operators packages.
+  - R/op.R: modified, now only contains formula methods
+
+
+  
+2010-06-05
+  This refactor effort is designed to make formula.tools more generic
+  and robust. Previous releases focused only on relational operators. This 
+  release looks at operators in general.  
+
+  - R/zzz.R: removed ASCII ART logo
+  - R/operators.R: 
+    + .operators: list to be the of R operators by type.
+    + operators: function to return a char vector of operator names, 
+      includes the look-up of special operators, i.e. %xyz%.
+    + expanded operators to include arithmetic, colon(range), colons,
+      logical and assignment
+    + Submitted R Bug 14310, unrecognized primitives -> ->>, see note in code
+
+  - R/is.one.sided.R 
+    + .is.one.sided: correctly identifies that ! is a one-sided function
+
+  - R/is.operator.R: added function to determine if argument is an operator
+
+  - R/as.operator.R: added. functions to coerce to operators.
+
+  - Wrote to Romain Francois about accepting the operator
+  
+
 2010-05-02  
   - R/op.type.R, R/invert.R :
     + Changes sense that op returns that operator as a name and not a 

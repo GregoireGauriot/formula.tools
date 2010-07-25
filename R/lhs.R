@@ -2,34 +2,25 @@
 # lhs
 #   extract and manipulate the left-hand side of R objects.
 # -----------------------------------------------------------------------------
-
 setGeneric( 'lhs', function(x, ...) standardGeneric( 'lhs' ) )
-setMethod(  'lhs', 'call', 
+
+# -------------------------------------
+# SINGULAR
+# -------------------------------------
+.lhs.singular <- 
   function(x) 
-  { 
-    if( class(x[[1]]) == 'name' && 
-        deparse(x[[1]]) %in% relational.operators 
-    ) {
-      x[[2]]
-    } else {
-      warning( "There is no relational operator defined for ", deparse(x)  )
-    }
-  }
-)
+    if( is.two.sided(x) ) x[[2]] else 
+      if( is.one.sided(x) ) NULL   else
+        warning( "Could not extract lhs of ", x ) 
 
 
-setMethod(  'lhs', 'formula', 
-  function(x,...) {
-    
-  # rh only, e.g. ~ a 
-    if ( length(x) == 2 ) return( NULL )
-
-    if ( length(x) == 3 ) return( x[[2]] ) 
-
-  }
-)
+setMethod( 'lhs', 'call', .lhs.singular ) 
+setMethod( 'lhs', 'formula', .lhs.singular )  
 
 
+# -------------------------------------
+# PLURAL
+# -------------------------------------
 setMethod(  'lhs', 'expression', function(x,...) lapply( x, lhs, ... ) )
 setMethod(  'lhs', 'list', function(x,...) lapply( x, lhs, ... ) )
 
@@ -42,36 +33,44 @@ setGeneric( 'lhs<-', function(this,value) standardGeneric('lhs<-') )
 
 
 # -------------------------------------
-# SINGLE: call, formula
+# SINGLULAR: call, formula
 # -------------------------------------
-.replace.lhs.single <-  function(this,value) {
+.replace.lhs.singular <-  function(this,value) {
     this[[2]] <- value 
     this 
 }
 
-setReplaceMethod( 'lhs', 'call' , .replace.lhs.single )
-setReplaceMethod( 'lhs', 'formula' , .replace.lhs.single )
+setReplaceMethod( 'lhs', 'call' , .replace.lhs.singular )
+setReplaceMethod( 'lhs', 'formula' , .replace.lhs.singular )
 
 
 # -------------------------------------
 # LIST AND VECTORS: expression, list
 # -------------------------------------
-.replace.lhs.many <- function( this, value ) {
+# .replace.lhs.plural <- function( this, value ) {
+# 
+#     if( length(value) == 1 ) {
+#       for( i in 1:length(this) ) lhs( this[[i]] ) <- value 
+#     } else {  
+#       if( length(this) != length(value) ) 
+#         stop( "Cannot change the lhs.  Arguments have different lengths" )
+# 
+#       for( i in 1:length(this) ) lhs(this[[i]] ) <- value[[i]]
+#     }
+# 
+#     this
+# }        
 
-    if( length(value) == 1 ) {
-      for( i in length(this) ) lhs( this[[i]] ) <- value 
-    } else {  
-      if( length(this) != length(value) ) 
-        stop( "Cannot change the lhs.  Arguments have different lengths" )
+.replace.lhs.plural <- function( this, value ) { 
 
-      for( i in length(this) ) lhs(this[[i]] ) <- value[[i]]
-    }
+  for( i in 1:length(this) ) lhs( this[[i]] ) <- value 
+  this
 
-    this
-}        
+}
 
+  
 
-setReplaceMethod( 'lhs', 'expression' , .replace.lhs.many )
-setReplaceMethod( 'lhs', 'list' , .replace.lhs.many )
+setReplaceMethod( 'lhs', 'expression' , .replace.lhs.plural )
+setReplaceMethod( 'lhs', 'list' , .replace.lhs.plural )
 
 

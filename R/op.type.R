@@ -4,18 +4,24 @@
 #
 #   n.b.
 #     - No replacement methods available for op.type.
+#     - similar to operator.tools::operator.type which is applied directly to
+#       the operator
 # -----------------------------------------------------------------------------
 
 # OP.TYPE
-setGeneric( 'op.type', function(x, ...) standardGeneric( 'op.type' ) )
+setGeneric( 'op.type', function(x) standardGeneric( 'op.type' ) )
 
-setMethod(  'op.type', 'call' , function (x) op.types[[ as.character(op(x)) ]] )
-setMethod(  'op.type', 'formula' , function (x) op.types[[ as.character(op(x)) ]] )
+
+# SINGULAR METHODS
+setMethod(  'op.type', 'call' , function (x) operator.type( (op(x) )  ) )
+setMethod(  'op.type', 'formula' , function (x) operator.type( op(x) ) )
+
+
+# PLURAL METHODS
 setMethod(  'op.type', 'expression', 
-  function(x,...) lapply( x,function(x) op.types[[ as.character(op(x)) ]],  ... ) 
+  function(x) lapply( x, function(x) operator.type( op(x) )  )  
 )
 setMethod( 'op.type', 'list',
-  function(x,...) lapply( x,function(x) op.types[[ as.character(op(x)) ]],  ... ) 
+  function(x) lapply( x, function(x) operator.type( op(x) )  )  
 )
                            
-

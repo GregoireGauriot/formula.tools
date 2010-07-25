@@ -71,21 +71,20 @@
 
 \title{ 
   Manipulate the component parts of formulas, expressions, calls, name/symbols
-  and many values objects of these such as list and vectors.
+  and list and vectors of such objects.
 }
 
 \description{                                                                 
-  \code{ lhs, rhs, op, and op.type } retrieve the various parts of R formulas, 
-  expressions, calls and names/symbols.  These functions were designed to 
+  \code{lhs, rhs, op, and op.type } retrieve the various parts of R formulas, 
+  calls, expressions, names/symbols.  These functions were designed to 
   greatly facilitate symbolic manupulation using native R objects.  Also 
-  provided are methods to handle lists of these objects. 
-
+  provided are methods to handle list of these objects. 
 
   \tabular{ll}{ 
     lhs \tab retrieves the left-hand side \cr
     rhs \tab retrieves the right-hand side \cr
     op \tab  retrieves the operation \cr
-    op.type \tab returns the type of logical operation, one of: 'gt', 'lt', 'eq', 'ne' or '~' \cr
+    op.type \tab returns the type operator
   }
                                    
   There are also functions \code{lhs.vars} and \code{rhs.vars}.  Like 
@@ -113,8 +112,8 @@
 
   lhs(x, ...)
   rhs(x, ...)
-  op(x, ...)
-  op.type(x, ...) 
+  op(x)
+  op.type(x) 
 
   lhs.vars( x, ... )
   rhs.vars( x, ... )
@@ -140,7 +139,8 @@
   If the object does not contain one of these operators, it will fail with a 
   warning.
 
-  The defined op.types are 'gt', 'lt', 'eq', 'ne' and '~'.
+  The defined operator types are defined by the operator.tools package: 
+  See \code{\link[operator.tools]{operators}} and \code{\link[operator.tools]{setOperator}}
 
   The \code{lhs.vars} and \code{rhs.vars} methods, return the variables used
   on the lhs and rhs, respectively.  If special formula variables are used, 
@@ -155,7 +155,7 @@
 
 \author{ Christopher Brown }
 
-\seealso{ terms, all.vars, all.names, \code{\link{relational.operators}} }
+\seealso{ terms, all.vars, all.names, \code{\link[operator.tools]{operators}} }
 
 \examples{
 

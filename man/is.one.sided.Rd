@@ -12,6 +12,11 @@
 \alias{is.two.sided}
 \alias{is.two.sided-methods}
 \alias{is.two.sided,ANY-method}
+\alias{is.two.sided,call-method}
+\alias{is.two.sided,formula-method}
+\alias{is.two.sided,expression-method}
+\alias{is.two.sided,list-method}
+
 
 \title{ is.one.sided, is.two.sided }
 \description{

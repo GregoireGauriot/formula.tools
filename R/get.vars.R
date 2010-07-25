@@ -48,15 +48,17 @@ setMethod( 'get.vars', c( 'call', 'ANY' ),
   function( x, data=NULL, ... ) {
 
     term <- terms( x, data=data, ... )
-    vars <- attr( term, 'variables' )
-    
-    nms <- as.character(vars)
-
-    if ( length(nms)  > 0 ) {
-      return( nms[-1] )
-    } else {
-      return( NULL )
-    }
+    term
+  
+#     # vars <- attr( term, 'variables' )
+#     
+#     nms <- as.character(vars)
+# 
+#     if ( length(nms)  > 0 ) {
+#       return( nms[-1] )
+#     } else {
+#       return( NULL )
+#     }
 
   }
 )
@@ -86,42 +88,5 @@ setMethod( 'get.vars', c( 'name', 'ANY' ) ,
 setMethod( 'get.vars', c( 'ANY', 'ANY' ), 
   function( x, data, ... ) NULL
 )
-
-
-
-# dep.vars OR rhs.vars  
-# setGeneric( 'lhs.vars', function(x, ... ) standardGeneric( 'lhs.vars' ) )
-#setMethod( 'lhs.vars' , 'formula', 
-#  function(x, ..., data=NULL) get.vars( lhs(x), data=data)
-#)
-
-
-
-# ind.vars OR lhs.vars 
-#   Returans the lhs.vars
-#        x[[1]] %in% c( relational.opertators, tilde )
-#setGeneric( 'rhs.vars', function(x, ... ) standardGeneric( 'rhs.vars' ) )
-#setMethod( 'rhs.vars', 'formula', 
-#  function(x, ..., data=NULL) {
-#
-#    term.rhs <- terms.formula( x, data=data, ... )
-#    labels   <- attr( term.rhs, 'term.labels' )
-#    order    <- attr( term.rhs, 'order' )
-#    vars.rhs <- labels[ order == 1 ]      
-#
-#    return(vars.rhs )
-#
-#  }
-#
-# )
-
-
-# setGeneric( 'all.vars', function(x,... ) standardGeneric( 'all.vars' ) )
-
-# setMethod( 'all.vars', 'formula', function(x) { "hw" } ) 
-# all.vars.formula <- function( x ) x  
-
-
-
 
 

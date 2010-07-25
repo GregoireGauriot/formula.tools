@@ -1,6 +1,14 @@
+- Divide into operators package, expressions package
+- Rename to formulas package
+- Change is.operator
 
-- Change name to symbolic.tools (probably not)
-- R/op.R
+- Implement add.operator function
+
+- implement over custom operators. 
+  ? testing for %.+% on the first element
+  ? test for name 
+
+x R/op.R
   + should return the op and not as.character(op)
 
 - 

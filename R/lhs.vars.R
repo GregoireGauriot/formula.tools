@@ -6,9 +6,9 @@ setGeneric( 'lhs.vars', function(x, ... ) standardGeneric( 'lhs.vars' ) )
 
 .lhs.vars <- function(x, ..., data=NULL) 
 {
-  if( class( x[[1]] )   == 'name' &&
-      deparse( x[[1]] ) %in% c( relational.operators, tilde ) 
-
+  if( 
+      class( x[[1]] )   == 'name' &&
+      deparse( x[[1]] ) %in% operators() 
   ) {
     get.vars( lhs(x), ..., data=data ) 
   } else {
