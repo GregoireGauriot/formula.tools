@@ -1,7 +1,23 @@
 \name{which.class}
 \Rdversion{1.1}
+
+
 \alias{is.cat}
+\alias{is.cat-methods}
+\alias{is.cat,ANY-method}
+\alias{is.cat,character-method}
+\alias{is.cat,factor-method}
+\alias{is.cat,logical-method}
+
 \alias{is.cont}
+\alias{is.cont-methods}
+\alias{is.cont,ANY-method}
+\alias{is.cont,complex-method}
+\alias{is.cont,Date-method}
+\alias{is.cont,factor-method}
+\alias{is.cont,integer-method}
+\alias{is.cont,numeric-method}
+
 \alias{which.cat}
 \alias{which.cont}
 
@@ -15,8 +31,8 @@
 }
 
 \usage{
-    is.cat(x, classes = c('character', 'factor', 'logical') )
-    is.cont( x, classes = c( 'numeric', 'integer', 'Date' ) )
+    is.cat(x, ...)
+    is.cont(x, ...)
 
     which.cat(x, ..., names = FALSE )
     which.cont(x, ..., names = FALSE )
@@ -24,8 +40,6 @@
 
 \arguments{
   \item{x}{ an object such as a vector or data.frame }
-
-  \item{classes}{ a character vector of class names }
 
   \item{names}{ logical.  Whether to return names or indices }
 

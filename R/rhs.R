@@ -24,7 +24,18 @@ setMethod( 'rhs', 'formula', .rhs.singular )
 # -------------------------------------
 # PLURAL    
 # -------------------------------------
-setMethod( 'rhs', 'expression', function(x,...) lapply( x, rhs, ... ) )       
+# setMethod( 'rhs', 'expression', function(x,...) lapply( x, rhs, ... ) )       
+setMethod( 'rhs', 'expression', 
+  function(x,...) { 
+    ret <- vector( 'expression', length(x) )
+    for( i in 1:length(x) ) {
+      rh <- rhs( x[[i]] )
+      if( ! is.null( rh ) ) ret[[i]] <- rh
+    }
+    ret
+  }
+)
+
 setMethod( 'rhs', 'list', function(x,...) lapply( x, rhs, ... ) )
  
 
@@ -74,8 +85,17 @@ setReplaceMethod( 'rhs', 'formula' , .replace.rhs.singular )
 
 .replace.rhs.plural <- function( this, value ) {
 
-  for( i in 1:length(this) ) rhs(this[[i]]) <- value
-  this
+  if( length(value) == 1 ) { 
+    for( i in 1:length(this) ) rhs( this[[i]] ) <- value 
+ 
+  } else if( length(this) == length(value) ) {
+    for( i in 1:length(this) ) rhs( this[[i]] ) <- value[[i]]
+
+  } else { 
+    warning( "length of object != length of rhs replacement" )
+  }
+
+  this     
 
 }
 

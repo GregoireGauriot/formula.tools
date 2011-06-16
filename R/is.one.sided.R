@@ -1,5 +1,3 @@
-# is.one.sided, is.two.sided
-
 # ---------------------------------------------------------------------
 # is.one.sided
 #  This function identifies unary operators/functions.  
@@ -8,7 +6,7 @@
 #
 # ---------------------------------------------------------------------
 .is.one.sided <- function(x) 
-    class(x[[1]])   == 'name' && 
+    is.name(x[[1]])  && 
     deparse(x[[1]]) %in% c( '~', '!') && 
      length(x) == 2 
 
@@ -35,7 +33,7 @@ setMethod( 'is.one.sided', 'ANY',
 # is.two.sided
 # ---------------------------------------------------------------------
 .is.two.sided <- function(x) 
-  class(x[[1]]) == 'name' &&
+  is.name(x[[1]]) &&
   deparse(x[[1]]) %in% operators() &&
   length(x) == 3
 

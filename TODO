@@ -1,14 +1,11 @@
-- Divide into operators package, expressions package
-- Rename to formulas package
-- Change is.operator
 
-- Implement add.operator function
+- Do these belong in vector.tools package?
+  - R/which.class
+  - test/is-cat.R
+
+- expression.tools package(?)
 
 - implement over custom operators. 
   ? testing for %.+% on the first element
   ? test for name 
 
-x R/op.R
-  + should return the op and not as.character(op)
-
-- 

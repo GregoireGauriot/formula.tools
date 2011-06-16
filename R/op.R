@@ -7,9 +7,21 @@ setGeneric( 'op', function(x) standardGeneric( 'op' ) )
 
 setMethod( 'op', 'formula', function(x) x[[1]] )
 setMethod( 'op', 'call', function(x) x[[1]] )
-setMethod( 'op', 'expression', function(x) lapply(x, op ) )
-setMethod( 'op', 'list', function(x) lapply(x,op) )
 setMethod( 'op', 'name', function(x) if( as.character(x) %in% operators( "ALL" ) ) return(x) )
+
+setMethod( 'op', 'expression', 
+  function(x) {
+    ret <- vector( 'expression', length(x) )
+    for( i in 1:length(x) ) {
+      o <- op( x[[i]] ) 
+      if( ! is.null(op) ) ret[[i]] <- o
+    }
+    ret
+  }
+)
+
+
+setMethod( 'op', 'list', function(x) lapply(x,op) )
 
 # -----------------------------------------------------------------------------
 # REPLACEMENT : OP<-
@@ -66,18 +78,19 @@ setReplaceMethod( 'op', 'formula',
 # -------------------------------------
 .replace.op.plural <- function( this, value ) {
 
-    if( length(value) == 1  ) { 
-      for( i in 1:length(this) ) op( this[[i]] ) <- as.name(value) 
+  if( length(value) == 1  ) { 
+    for( i in 1:length(this) ) op( this[[i]] ) <- as.name(value) 
 
-    } else {
-      if( length(value) != length(this) ) 
-        stop( "Cannot change the 'op'. Arguments have different lengths" )
+  } else if( length(this) == length(value) ) {
+    for( i in 1:length(this) ) op( this[[i]] ) <- as.name( value[[i]] )
 
-      for( i in 1:length(value) ) op( this[[i]] ) <- as.name(value[[i]]) 
-      
-    } 
+  } else { 
+    warning( "length of object != length of op replacement" )
 
-    this
+  }
+    
+  this
+  
 }
 
 

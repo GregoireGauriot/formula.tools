@@ -17,17 +17,17 @@
 \tabular{ll}{
     Package: \tab formtools\cr
     Type: \tab Package\cr
-    Version: \tab 1.0.1\cr
-    Date: \tab 2010-07-25\cr
-    License: \tab LPGL(>=2)\cr
+    Version: \tab 1.2.1\cr
+    Date: \tab 2011-06-16\cr
+    License: \tab GPL(>=2)\cr
     LazyLoad: \tab yes\cr
   }
 }
 
 \author{
   Christopher Brown  
-  Maintainer: Christopher Brown <cbrown@opendatagroup.com>
-  \url{http://www.opendatagroup.com}
+  Maintainer: Christopher Brown <cbrown@decisionpatterns.com>
+  http://www.decisionpatterns.com
 }
 
 \keyword{ package }
