@@ -1,7 +1,6 @@
 84ad67131aae67f3843e3b8e2841d44c *ChangeLog
-3bc3766c24407a07bba46559cbb39668 *DESCRIPTION
-46b11aa21faa2ea81ba47eda491b5b6f *LICENSE
-012592abf4b40a8d741b299df2ded05a *NAMESPACE
+b02dd408f07c3c1628197f5ecfd65499 *DESCRIPTION
+53d995b2dd50d49fc34083c113ed3ce5 *NAMESPACE
 3284298785f6cbb19dd1007c9ad33849 *R/as.character.formula.R
 64f91418ffbde237e2aa0027f5705718 *R/get.vars.R
 db722e0534911c669a4fabfc6058cf51 *R/invert.R
@@ -15,7 +14,8 @@ f2c9dd322143cbc6fd4ba44f0fcd2e4d *R/rhs.vars.R
 2ef30eb052249ea92021d9a5cecd2a01 *R/terms.R
 9fcd84b09f1e114aedafdf0892cfc6eb *R/which.class.R
 fc0fa5da8204f1abd22871da73fbf0c7 *R/zzz.R
-5c0fa06e22e4c382a0a8023b776b8cf6 *TODO
+830bd7b831af49c5bafcb36ab265e4a2 *inst/tests/1_test.all.R
+a943ee7115d8c4ec666ea6ce43352640 *inst/tests/is-cat.R
 a2c28bd747ce646b01ef0c0993f642db *man/as.character.formula.Rd
 485897871432510e31bedfd28ec151aa *man/formula.parts-methods.Rd
 6ce4c2819ef1f87ce6e0b086b38ea223 *man/formula.tools-package.Rd
@@ -24,7 +24,4 @@ a2c28bd747ce646b01ef0c0993f642db *man/as.character.formula.Rd
 5ed08df46ff063978e08efb6e99e8e35 *man/is.one.sided.Rd
 e18cd9fbd2c98f46b6403b48f857e0e1 *man/terms.Rd
 5001799f01b521c6505e2b32c08fb6dc *man/which.class.Rd
-a90280351b9e0f056a6b7343f77df06f *scripts/inverse.operators.r
-dfdb27c13eb21c6d0c844c7112bcc649 *scripts/op.types.r
-830bd7b831af49c5bafcb36ab265e4a2 *tests/1_test.all.R
-a943ee7115d8c4ec666ea6ce43352640 *tests/is-cat.R
+4d01d8f7d55d2edc5567c7b19c538e2f *tests/run-all.R
