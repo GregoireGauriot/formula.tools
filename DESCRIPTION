@@ -1,12 +1,15 @@
 Package: formula.tools
 Type: Package
 Title: Utilities for Formulas, Expressions, Calls and Other Objects
-Version: 1.5.4
-Date: 2015-06-23
+Version: 1.6.1
+Date: 2017-02-27
 Author: Christopher Brown
 Maintainer: Christopher Brown <chris.brown@decisionpatterns.com>
 Description: These utilities facilitate the programmatic manipulations of
-    formulas, expressions, calls, names, symbols and other objects.
+    formulas, expressions, calls, names, symbols and other objects. These 
+    objects all share the same structure: a left-hand side operator and 
+    right-hand side. This packages provides methods for accessing and modifying
+    the structures as well as extracting names and symbols from these objects.
 Depends: R (>= 3.0.0), operator.tools(>= 1.4.0), utils, methods
 Suggests: magrittr, testthat
 License: GPL (>= 2)
@@ -19,7 +22,8 @@ Collate: 'as.character.formula.R' 'catcont.R' 'get.vars.R' 'invert.R'
         'parts.R' 'parts.lhs.get.R' 'parts.lhs.set.R' 'parts.op.get.R'
         'parts.op.set.R' 'parts.rhs.get.R' 'parts.rhs.set.R'
         'rhs.vars.R' 'terms.R' 'zzz.R'
-Packaged: 2015-06-23 23:27:09 UTC; cbrown
-NeedsCompilation: no
+RoxygenNote: 6.0.1.9000
 Repository: CRAN
-Date/Publication: 2015-06-24 11:15:32
+NeedsCompilation: no
+Packaged: 2017-02-27 11:23:03 UTC; cbrown
+Date/Publication: 2017-02-27 14:19:10
