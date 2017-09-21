@@ -4,7 +4,6 @@
 \docType{methods}
 \name{formula.parts}
 \alias{formula.parts}
-\alias{.lhs.singular}
 \alias{lhs}
 \alias{lhs,call-method}
 \alias{lhs,formula-method}
@@ -12,11 +11,12 @@
 \alias{lhs,expression-method}
 \alias{lhs,list-method}
 \alias{lhs<-}
-\alias{.replace.lhs.singular}
 \alias{lhs<-}
 \alias{lhs<-,call-method}
 \alias{lhs<-}
 \alias{lhs<-,formula-method}
+\alias{lhs<-,<--method}
+\alias{`lhs<-`,<--method}
 \alias{.replace.lhs.plural}
 \alias{lhs<-}
 \alias{lhs<-,expression-method}
@@ -34,6 +34,7 @@
 \alias{op<-,call-method}
 \alias{op<-}
 \alias{op<-,formula-method}
+\alias{op<-,<--method}
 \alias{.replace.op.plural}
 \alias{op<-}
 \alias{op<-,expression-method}
@@ -52,6 +53,7 @@
 \alias{rhs<-,call-method}
 \alias{rhs<-}
 \alias{rhs<-,formula-method}
+\alias{rhs<-,<--method}
 \alias{.replace.rhs.plural}
 \alias{.replace.ths.plural}
 \alias{rhs<-}
@@ -61,15 +63,13 @@
 \title{Manipulate the component parts of formulas, expressions, calls, name/symbols 
 and list and vectors of such objects.}
 \usage{
-.lhs.singular(x)
-
 lhs(x, ...)
 
 \S4method{lhs}{call}(x)
 
 \S4method{lhs}{formula}(x)
 
-\S4method{lhs}{`<-`}(x)
+
 
 \S4method{lhs}{expression}(x, ...)
 
@@ -77,11 +77,11 @@ lhs(x, ...)
 
 lhs(x) <- value
 
-.replace.lhs.singular(x, value)
-
 \S4method{lhs}{call}(x) <- value
 
 \S4method{lhs}{formula}(x) <- value
+
+
 
 .replace.lhs.plural(x, value)
 
@@ -101,13 +101,15 @@ op(x)
 
 \S4method{op}{list}(x)
 
-\S4method{op}{`<-`}(x)
+
 
 op(x) <- value
 
 \S4method{op}{call}(x) <- value
 
 \S4method{op}{formula}(x) <- value
+
+
 
 .replace.op.plural(x, value)
 
@@ -123,7 +125,7 @@ rhs(x, ...)
 
 \S4method{rhs}{formula}(x)
 
-\S4method{rhs}{`<-`}(x)
+
 
 \S4method{rhs}{expression}(x, ...)
 
@@ -137,6 +139,8 @@ rhs(x) <- value
 
 \S4method{rhs}{formula}(x) <- value
 
+
+
 .replace.rhs.plural(x, value)
 
 \S4method{rhs}{expression}(x) <- value
@@ -146,8 +150,20 @@ rhs(x) <- value
 \arguments{
 \item{x}{object from where to get/set the lhs/rhs}
 
-\item{...}{arguments passed to additional methods
+\item{...}{arguments passed to additional methods}
 
+\item{value}{the value to set for the lhs/rhs}
+}
+\value{
+Value depends on the argument.
+}
+\description{
+\code{lhs, rhs, op, and op.type } retrieve the various parts of R formulas, 
+calls, expressions, names/symbols.  These functions were designed to 
+greatly facilitate symbolic manupulation using native R objects.  Also 
+provided are methods to handle list of these objects.
+}
+\details{
 \code{lhs} retrieves the left-hand side 
 \code{rhs} retrieves the right-hand side 
 \code{op}  retrieves the operation 
@@ -171,18 +187,12 @@ The defined operator types are defined by the operator.tools package: See
 The \code{lhs.vars} and \code{rhs.vars} methods, return the variables used on
 the lhs and rhs, respectively.  If special formula variables are used, such 
 as '.', a data.frame or environment must also be provided such that the 
-variable list may be properly infered.}
-
-\item{value}{the value to set for the lhs/rhs}
+variable list may be properly infered.
 }
-\value{
-Value depends on the argument.
-}
-\description{
-\code{lhs, rhs, op, and op.type } retrieve the various parts of R formulas, 
-calls, expressions, names/symbols.  These functions were designed to 
-greatly facilitate symbolic manupulation using native R objects.  Also 
-provided are methods to handle list of these objects.
+\note{
+Methods for the non-standard "\code{<-}" class exist and are not included in 
+the usage documentation because CRAN does not support S4 documentation for 
+this class.
 }
 \examples{
 

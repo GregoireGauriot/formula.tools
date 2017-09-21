@@ -7,7 +7,6 @@
 \alias{op.type,call-method}
 \alias{op.type,formula-method}
 \alias{op.type,<--method}
-\alias{op.type,`<-`-method}
 \alias{op.type,ANY-method}
 \alias{op.type,expression-method}
 \alias{op.type,list-method}
@@ -19,7 +18,7 @@ op.type(x)
 
 \S4method{op.type}{formula}(x)
 
-\S4method{op.type}{`<-`}(x)
+
 
 \S4method{op.type}{ANY}(x)
 
