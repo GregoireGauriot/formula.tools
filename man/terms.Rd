@@ -4,7 +4,6 @@
 \alias{terms.call}
 \alias{terms.expression}
 \alias{terms}
-\alias{terms.expression}
 \title{terms}
 \usage{
 \method{terms}{call}(x, ...)
@@ -42,7 +41,10 @@ terms method for call and expression objects
 
 }
 \seealso{
-\code{\link{terms.object}} and \code{\link{terms.formula}}
+\itemize{
+\item \code{\link[stats:terms.object]{stats::terms.object()}}
+\item \code{\link[stats:terms.formula]{stats::terms.formula()}}
+}
 }
 \author{
 Christopher Brown
